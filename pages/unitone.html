@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>المبدع اولي ثانوي</title>
+</head>
+
+<body>
+    <!--Main Navigation-->
+    <!--Main Navigation-->
+    <header>
+        <!-- Sidebar -->
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>منهج اولي ثانوي</span>
+                    </a>
+                    <a href="./pages/unitone.html" class="list-group-item list-group-item-action py-2 ripple ">
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>واجب الدرس الاول</span>
+                    </a>
+                   
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar -->
+
+        <!-- Navbar -->
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Brand -->
+                <!-- Search form -->
+
+
+                <!-- Right links -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+    <!--Main Navigation-->
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            <div class="video">
+                <iframe width="100%" height="500" src="https://www.youtube.com/embed/Pt4WD5SbMqA?si=x-lE86x44aWsioyM"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const quizData = [
+            {
+                question: "Publishers suffer significant losses as a result of book .............. .",
+                a: "accuracy",
+                b: "privacy",
+                c: "piracy",
+                d: "literacy",
+                correct: "a",
+            },
+            {
+                question: "Publishers suffer significant losses as a result of book .............. .",
+                a: "accuracy",
+                b: "privacy",
+                c: "piracy",
+                d: "literacy",
+                correct: "a",
+            },
+            {
+                question: "Publishers suffer significant losses as a result of book .............. .",
+                a: "accuracy",
+                b: "privacy",
+                c: "piracy",
+                d: "literacy",
+                correct: "a",
+            },
+            {
+                question: "Publishers suffer significant losses as a result of book .............. .",
+                a: "accuracy",
+                b: "privacy",
+                c: "piracy",
+                d: "literacy",
+                correct: "a",
+            },
+        ];
+
+        const quiz = document.getElementById("quiz");
+        const answerElements = document.querySelectorAll(".answer");
+        const questionElement = document.getElementById("question");
+        const a_text = document.getElementById("a_text");
+        const b_text = document.getElementById("b_text");
+        const c_text = document.getElementById("c_text");
+        const d_text = document.getElementById("d_text");
+        const submitButton = document.getElementById("submit");
+
+        let currentQuiz = 0;
+        let score = 0;
+
+        const deselectAnswers = () => {
+            answerElements.forEach((answer) => (answer.checked = false));
+        };
+
+        const getSelected = () => {
+            let answer;
+            answerElements.forEach((answerElement) => {
+                if (answerElement.checked) answer = answerElement.id;
+            });
+            return answer;
+        };
+
+        const loadQuiz = () => {
+            deselectAnswers();
+            const currentQuizData = quizData[currentQuiz];
+            questionElement.innerText = currentQuizData.question;
+            a_text.innerText = currentQuizData.a;
+            b_text.innerText = currentQuizData.b;
+            c_text.innerText = currentQuizData.c;
+            d_text.innerText = currentQuizData.d;
+        };
+
+        loadQuiz();
+
+        submitButton.addEventListener("click", () => {
+            const answer = getSelected();
+            if (answer) {
+                if (answer === quizData[currentQuiz].correct) score++;
+                currentQuiz++;
+                if (currentQuiz < quizData.length) loadQuiz();
+                else {
+                    quiz.innerHTML = `
+            <h2>انت جوبت  ${score}/${quizData.length} </h2>
+            <button onclick="history.go(0)">Play Again</button>
+        ` // location.reload() won't work in CodePen for security reasons;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
